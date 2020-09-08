@@ -64,47 +64,59 @@ for ($letter = 'a'; $letter != 'aa'; $letter++) {
 
 print_r($arr); // Array ([0] => a, [1] => b, [2] => c, ...) a-z alphabetical array
 
-/*
+
 new_exercise(6);
 // === Final exercise ===
 // The fixed code should echo the following at the bottom:
 // Here is the name: $name - $name2
 // $name variables are randomly combined as seen in the code, fix all the bugs whilst keeping the functionality!
 // Examples: captain strange, ant widow, iron man, ...
+
+
 $arr = [];
 
 
-function combineNames($str1 = "", $str2 = "") {
+function combineNames($str1 = " ", $str2 = ".") {
     $params = [$str1, $str2];
     foreach($params as $param) {
-        if ($param == "") {
-            $param = randomHeroName();
+        if ($param == " ") {
+            $param = randomHeroFirstName();
+        }
+        if ($param == ".") {
+            $param = randomHeroLastName();
         }
     }
-    echo implode($params, " - ");
+    echo implode($params);
 }
 
 
 function randomGenerate($arr, $amount) {
     for ($i = $amount; $i > 0; $i--) {
-        array_push($arr, randomHeroName());
+        array_push($arr, randomHeroFirstName());
     }
 
     return $amount;
 }
 
-function randomHeroName()
+function randomHeroFirstName()
 {
     $hero_firstnames = ["captain", "doctor", "iron", "Hank", "ant", "Wasp", "the", "Hawk", "Spider", "Black", "Carol"];
-    $hero_lastnames = ["America", "Strange", "man", "Pym", "girl", "hulk", "eye", "widow", "panther", "daredevil", "marvel"]
-    $heroes = [$hero_firstnames, $hero_lastnames];
-    $randname = $heroes[rand(0,count($heroes))][rand(0, 10)];
+    $randname = $hero_firstnames[rand(0, 10)];
 
     echo $randname;
 }
 
-echo "Here is the name: " . combineNames();
+function randomHeroLastName()
+{
+    $hero_lastnames = ["America", "Strange", "man", "Pym", "girl", "hulk", "eye", "widow", "panther", "daredevil", "marvel"];
+    $randname = " ".$hero_lastnames[rand(0, 10)];
 
+    echo $randname;
+}
+
+echo "Here is the name: ";
+echo combineNames();
+/*
 new_exercise(7);
 function copyright(int $year) {
     return "&copy; $year BeCode";
